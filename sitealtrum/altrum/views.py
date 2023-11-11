@@ -1,10 +1,15 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
+from django.template.loader import  render_to_string
 
 def index(request):
-    return HttpResponse('Страница приложения altrum')
+    # t = render_to_string('altrum/index.html')
+    # return HttpResponse(t)
+    return render(request, 'altrum/index.html')
+
+def about(request):
+    return render(request, 'altrum/about.html')
 
 
 def categories(request, cat_id):

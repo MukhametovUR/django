@@ -5,6 +5,7 @@ register_converter(converters.FourDigitYearConverter, "year4")
 
 urlpatterns = [
     path('', views.index, name='home'), #http://127.0.0.1:8000/
+    path('about/', views.about, name='about'),  # http://127.0.0.1:8000/
     path('cats/<int:cat_id>/', views.categories, name='cats_id'), #http://127.0.0.1:8000/categories/
     path('cats/<slug:cat_slug>/', views.categories_by_slug, name='cats'),  # http://127.0.0.1:8000/categories/
     # re_path(r"^archive/(?P<year>[0-9]{4})/", views.archive)
