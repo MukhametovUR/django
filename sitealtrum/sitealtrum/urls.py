@@ -25,4 +25,4 @@ urlpatterns = [
     path('', include('altrum.urls')), #http://127.0.0.1:8000/
 ]
 
-handler404 = page_not_found
+# handler404 = page_not_found
