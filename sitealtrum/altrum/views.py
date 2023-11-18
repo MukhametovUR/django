@@ -14,11 +14,18 @@ data_db = [
     {'id': 3, 'title': 'Строительство и логистика', 'content': 'Полный цикл логистики и строительства', 'is_published': True}
 ]
 
+cats_db = [
+    {'id': 1, 'name': 'Строительство'},
+    {'id': 2, 'name': 'Доставка'},
+    {'id': 3, 'name': 'Логистика'},
+
+]
 def index(request):
     data = {
         'title': 'Главная страница',
         'menu': menu,
         'posts': data_db,
+        'cat_selected': 0,
     }
     return render(request, 'altrum/index.html', context=data)
 
@@ -65,6 +72,14 @@ def contact(request):
 def login(request):
     return HttpResponse("Авторизация")
 
+def show_categories(request, cat_id):
+    data = {
+        'title': 'Главная страница',
+        'menu': menu,
+        'posts': data_db,
+        'cat_selected':cat_id,
+    }
+    return render(request, 'altrum/index.html', context=data)
 
 def page_not_found(request):
     return HttpResponseNotFound("<h1>Страница не найдена</h1>")
