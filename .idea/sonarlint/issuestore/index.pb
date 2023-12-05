@@ -28,3 +28,9 @@ w
 G.idea/sonarlint/issuestore/f/3/f35ff39439f2119f42bcaea39e6a4e9c2f63f197,b/4/b4f1495c61b10424065f3a2b1dc7f02267bb5908
 \
 ,sitealtrum/altrum/migrations/0001_initial.py,8/0/807a0151913a9ee15a4984ceee5bc9f8409b58b9
+O
+sitealtrum/altrum/converters.py,0/1/01511b8c11fba202e15484be4d254e49f1b11d31
+N
+sitealtrum/templates/base.html,b/5/b5882adf72b1f7233f6b6d7eba0cfe7976cdafe6
+X
+(sitealtrum/altrum/migrations/__init__.py,4/1/41f2883b47ed9da2b39a15a7c2c6f0ae2ce889dc
