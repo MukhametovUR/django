@@ -23,7 +23,7 @@ cats_db = [
 
 ]
 def index(request):
-    posts = Altrum.objects.filter(is_published=1)
+    posts = Altrum.published.all()
     data = {
         'title': 'Главная страница',
         'menu': menu,
