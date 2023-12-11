@@ -19,13 +19,16 @@ class Altrum(models.Model):
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(choices=Status.choices, default=Status.DRAFT)
-    cat = models.ForeignKey('Category', on_delete=models.CASCADE)
+    cat = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='posts')
 
     objects = models.Manager()
     published = PublishedManager()
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'cat_slug': self.slug})
 
     class Meta:
         ordering = ['-time_create']

@@ -10,10 +10,6 @@ c
 3sitealtrum/altrum/templates/altrum/include/nav.html,f/3/f35ff39439f2119f42bcaea39e6a4e9c2f63f197
 Z
 *sitealtrum/altrum/templatetags/__init__.py,4/2/42bd1d2b0d7111588d61fadc8f931a1a21e18818
-]
--sitealtrum/altrum/templatetags/altrum_tags.py,e/2/e235749e9feecd16ac3ee3cfa00465103591e63e
-g
-7sitealtrum/altrum/templates/altrum/list_categories.html,6/0/60a40d0268d9197c8df83e838680551dd77e1272
 ^
 .sitealtrum/altrum/static/altrum/css/styles.css,6/8/686fabf01ca94c8486ecc743ec3c3474aa0648bb
 M
@@ -34,3 +30,13 @@ N
 sitealtrum/templates/base.html,b/5/b5882adf72b1f7233f6b6d7eba0cfe7976cdafe6
 X
 (sitealtrum/altrum/migrations/__init__.py,4/1/41f2883b47ed9da2b39a15a7c2c6f0ae2ce889dc
+~
+Nsitealtrum/altrum/migrations/0002_alter_altrum_options_altrum_slug_and_more.py,b/c/bc1d61d5e468a6a0f0f77bff9755e73e5b0f87c8
+f
+6sitealtrum/altrum/migrations/0003_alter_altrum_slug.py,a/e/aee3f1524430cfd26c4edc8d74a88496977384b5
+n
+>sitealtrum/altrum/migrations/0004_alter_altrum_is_published.py,4/d/4dd0a3aff6109d0fc0d41b018dc79bc5305eddb2
+e
+5sitealtrum/altrum/migrations/0006_alter_altrum_cat.py,d/4/d49d99a937a0dfe1bcb0c9fa83b269c1b2cb72a6
+h
+8sitealtrum/altrum/migrations/0005_category_altrum_cat.py,6/f/6fb7fbe8c4ae4f482da5f3d246de8d9d15693c28

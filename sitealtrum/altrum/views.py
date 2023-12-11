@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.template.loader import  render_to_string
 
-from altrum.models import Altrum
+from altrum.models import Altrum, Category
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Добавить статью", 'url_name': 'add_page'},
@@ -83,14 +83,18 @@ def contact(request):
 def login(request):
     return HttpResponse("Авторизация")
 
-def show_categories(request, cat_id):
+
+def show_categories(request, cat_slug):
+    category = get_object_or_404(Category, slug=cat_slug)
+    posts = Altrum.published.filter(cat_id=category)
     data = {
-        'title': 'Главная страница',
+        'title': f'Главная страница: {category.name}',
         'menu': menu,
         'posts': data_db,
-        'cat_selected':cat_id,
+        'cat_selected': category.pk,
     }
     return render(request, 'altrum/index.html', context=data)
+
 
 def page_not_found(request):
     return HttpResponseNotFound("<h1>Страница не найдена</h1>")
