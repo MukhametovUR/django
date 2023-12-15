@@ -26,8 +26,6 @@ G.idea/sonarlint/issuestore/f/3/f35ff39439f2119f42bcaea39e6a4e9c2f63f197,b/4/b4
 ,sitealtrum/altrum/migrations/0001_initial.py,8/0/807a0151913a9ee15a4984ceee5bc9f8409b58b9
 O
 sitealtrum/altrum/converters.py,0/1/01511b8c11fba202e15484be4d254e49f1b11d31
-N
-sitealtrum/templates/base.html,b/5/b5882adf72b1f7233f6b6d7eba0cfe7976cdafe6
 X
 (sitealtrum/altrum/migrations/__init__.py,4/1/41f2883b47ed9da2b39a15a7c2c6f0ae2ce889dc
 ~
@@ -40,3 +38,5 @@ e
 5sitealtrum/altrum/migrations/0006_alter_altrum_cat.py,d/4/d49d99a937a0dfe1bcb0c9fa83b269c1b2cb72a6
 h
 8sitealtrum/altrum/migrations/0005_category_altrum_cat.py,6/f/6fb7fbe8c4ae4f482da5f3d246de8d9d15693c28
+Q
+!sitealtrum/sitealtrum/settings.py,7/8/78bbd231ad133aaf3b94278158114a5b5d363361
