@@ -10,11 +10,6 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Обратная связь", 'url_name': 'contact'},
         {'title': "Войти", 'url_name': 'login'}
 ]
-data_db = [
-    {'id': 1, 'title': 'Строительство под ключ', 'content': 'Строительство под ключ', 'is_published': True},
-    {'id': 2, 'title': 'Доставка материалов', 'content': 'Доставка до пункта назначения', 'is_published': False},
-    {'id': 3, 'title': 'Строительство и логистика', 'content': 'Полный цикл логистики и строительства', 'is_published': True}
-]
 
 cats_db = [
     {'id': 1, 'name': 'Строительство'},
@@ -22,8 +17,10 @@ cats_db = [
     {'id': 3, 'name': 'Логистика'},
 
 ]
+
+
 def index(request):
-    posts = Altrum.published.all()
+    posts = Altrum.published.all().select_related('cat')
     data = {
         'title': 'Главная страница',
         'menu': menu,
@@ -31,6 +28,7 @@ def index(request):
         'cat_selected': 0,
     }
     return render(request, 'altrum/index.html', context=data)
+
 
 def about(request):
     data = {'title': 'Главная страница',
@@ -86,7 +84,7 @@ def login(request):
 
 def show_categories(request, cat_slug):
     category = get_object_or_404(Category, slug=cat_slug)
-    posts = Altrum.published.filter(cat_id=category)
+    posts = Altrum.published.filter(cat_id=category).select_related('cat')
     data = {
         'title': f'Главная страница: {category.name}',
         'menu': menu,
@@ -102,7 +100,7 @@ def page_not_found(request):
 
 def show_tag_postlist(request, tag_slug):
     tag = get_object_or_404(TagPost, slug=tag_slug)
-    posts = tag.tags.filter(is_published=Altrum.Status.PUBLISHED)
+    posts = tag.tags.filter(is_published=Altrum.Status.PUBLISHED).select_related('cat')
     data = {
         'title': f"Тег: {tag.tag}",
         'menu': menu,
