@@ -12,8 +12,6 @@ Z
 *sitealtrum/altrum/templatetags/__init__.py,4/2/42bd1d2b0d7111588d61fadc8f931a1a21e18818
 ^
 .sitealtrum/altrum/static/altrum/css/styles.css,6/8/686fabf01ca94c8486ecc743ec3c3474aa0648bb
-I
-sitealtrum/altrum/apps.py,0/6/0674c58529b89c83e4c6dc334518de3a12455535
 w
 G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
 w
@@ -46,8 +44,6 @@ N
 sitealtrum/templates/base.html,b/5/b5882adf72b1f7233f6b6d7eba0cfe7976cdafe6
 ]
 -sitealtrum/altrum/templatetags/altrum_tags.py,e/2/e235749e9feecd16ac3ee3cfa00465103591e63e
-K
-sitealtrum/altrum/models.py,a/d/ad888f18ee361d2433bab7542e835b99992cbaf3
 \
 ,sitealtrum/altrum/templates/altrum/post.html,3/3/33e190e4f36650f8244c4cf14efa2cfead9b9c36
 a

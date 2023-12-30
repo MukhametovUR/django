@@ -32,6 +32,9 @@ class Altrum(models.Model):
         return reverse('category', kwargs={'cat_slug': self.slug})
 
     class Meta:
+        verbose_name = "Логистика"
+        verbose_name_plural = "Логистика"
+
         ordering = ['-time_create']
         indexes = [
             models.Index(fields=['-time_create'])
