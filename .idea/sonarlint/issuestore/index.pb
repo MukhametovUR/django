@@ -48,3 +48,5 @@ N
 ,sitealtrum/altrum/templates/altrum/post.html,3/3/33e190e4f36650f8244c4cf14efa2cfead9b9c36
 a
 1sitealtrum/altrum/templates/altrum/list_tags.html,2/5/25c94a921c0246f799a1ccd1dc2f4f05c0171f80
+Y
+)sitealtrum/templates/admin/base_site.html,1/3/13940eba1a07111d47de81d3b7c3adf08738ece1

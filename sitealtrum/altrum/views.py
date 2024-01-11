@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.template.loader import  render_to_string
 
+from altrum.forms import AddPostForm
 from altrum.models import Altrum, Category, TagPost
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
@@ -71,7 +72,24 @@ def show_post(request, post_slug):
 
 
 def add_page(request):
-    return HttpResponse("Добавление статьи")
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            # print(form.cleaned_data)
+            try:
+                Altrum.objects.create(**form.cleaned_data)
+                return redirect('home')
+            except:
+                form.add_error(None, 'Ошибка добавления поста')
+    else:
+        form = AddPostForm()
+
+    data = {
+        'menu': menu,
+        'title': 'Добавление статьи',
+        'form': form
+    }
+    return render(request, 'altrum/addpage.html', data)
 
 
 def contact(request):
