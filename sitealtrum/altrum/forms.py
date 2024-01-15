@@ -5,9 +5,10 @@ from altrum.models import Category, Altrum
 
 class AddPostForm(forms.ModelForm):
     cat = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label="Категория не выбрана", label="Категории")
+
     class Meta:
         model = Altrum
-        fields = ['title', 'slug', 'content', 'is_published', 'cat', 'tags']
+        fields = ['title', 'slug', 'photo', 'content', 'is_published', 'cat', 'tags']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-input'}),
             'content': forms.Textarea(attrs={'cols': 50, 'rows': 5}),
@@ -20,3 +21,7 @@ class AddPostForm(forms.ModelForm):
             raise ValidationError("Длина превышает 50 символов")
 
         return title
+
+
+class UploadedFileForm(forms.Form):
+    file = forms.ImageField(label='файл')

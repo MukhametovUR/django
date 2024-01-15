@@ -4,8 +4,6 @@
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-]
--sitealtrum/altrum/templates/altrum/about.html,9/8/98e050d2ce910e75de1a8298c7b9750ca0354baf
 c
 3sitealtrum/altrum/templates/altrum/include/nav.html,f/3/f35ff39439f2119f42bcaea39e6a4e9c2f63f197
 Z
@@ -44,9 +42,11 @@ N
 sitealtrum/templates/base.html,b/5/b5882adf72b1f7233f6b6d7eba0cfe7976cdafe6
 ]
 -sitealtrum/altrum/templatetags/altrum_tags.py,e/2/e235749e9feecd16ac3ee3cfa00465103591e63e
-\
-,sitealtrum/altrum/templates/altrum/post.html,3/3/33e190e4f36650f8244c4cf14efa2cfead9b9c36
 a
 1sitealtrum/altrum/templates/altrum/list_tags.html,2/5/25c94a921c0246f799a1ccd1dc2f4f05c0171f80
 Y
 )sitealtrum/templates/admin/base_site.html,1/3/13940eba1a07111d47de81d3b7c3adf08738ece1
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+U
+%sitealtrum/static/css/admin/admin.css,8/d/8d928e0bec7f25dc848bf01e262b904b03a8eec8

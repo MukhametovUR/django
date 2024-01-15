@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.template.loader import  render_to_string
 
-from altrum.forms import AddPostForm
-from altrum.models import Altrum, Category, TagPost
+from altrum.forms import AddPostForm, UploadedFileForm
+from altrum.models import Altrum, Category, TagPost, UploadFiles
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Добавить статью", 'url_name': 'add_page'},
@@ -31,16 +31,23 @@ def index(request):
     return render(request, 'altrum/index.html', context=data)
 
 
-def about(request):
-    data = {'title': 'Главная страница',
-            'menu': menu,
-            'posts': data_db,
-            }
-    return render(request, 'altrum/index.html', data)
+# def handle_uploaded_file(f):
+#     with open(f"uploads/{f.name}", "wb+") as destination:
+#         for chunk in f.chunks():
+#             destination.write(chunk)
 
 
 def about(request):
-    return render(request, 'altrum/about.html', {'title': 'О сайте', 'menu': menu})
+    if request.method == 'POST':
+        # handle_uploaded_file(request.FILES['file_upload'])
+        form = UploadedFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            fp = UploadFiles(file=form.cleaned_data['file'])
+            fp.save()
+    else:
+        form = UploadedFileForm()
+    return render(request, 'altrum/about.html',
+                  {'title': 'О сайте', 'menu': menu, 'form': form})
 
 
 def categories(request, cat_id):
@@ -73,8 +80,7 @@ def show_post(request, post_slug):
 
 def add_page(request):
     if request.method == 'POST':
-        form = AddPostForm(request.POST)
-        print(form)
+        form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
