@@ -34,8 +34,6 @@ h
 8sitealtrum/altrum/migrations/0005_category_altrum_cat.py,6/f/6fb7fbe8c4ae4f482da5f3d246de8d9d15693c28
 g
 7sitealtrum/altrum/templates/altrum/list_categories.html,6/0/60a40d0268d9197c8df83e838680551dd77e1272
-I
-sitealtrum/altrum/urls.py,3/a/3afac9e27fc860c0da7cc0f1dea68784eb60d700
 y
 Isitealtrum/altrum/migrations/0007_tagpost_alter_altrum_cat_altrum_tags.py,0/a/0af4b0a80c9b45ac7dfd80d8fa23884fd0651805
 N
@@ -46,7 +44,7 @@ a
 1sitealtrum/altrum/templates/altrum/list_tags.html,2/5/25c94a921c0246f799a1ccd1dc2f4f05c0171f80
 Y
 )sitealtrum/templates/admin/base_site.html,1/3/13940eba1a07111d47de81d3b7c3adf08738ece1
-S
-#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 U
 %sitealtrum/static/css/admin/admin.css,8/d/8d928e0bec7f25dc848bf01e262b904b03a8eec8
+D
+sitealtrum/manage.py,f/b/fb2932bc0a69a9073e94020d5c5f13591ffd1f59

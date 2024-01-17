@@ -2,6 +2,8 @@ from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.template.loader import  render_to_string
+from django.views import View
+from django.views.generic import TemplateView
 
 from altrum.forms import AddPostForm, UploadedFileForm
 from altrum.models import Altrum, Category, TagPost, UploadFiles
@@ -31,10 +33,22 @@ def index(request):
     return render(request, 'altrum/index.html', context=data)
 
 
-# def handle_uploaded_file(f):
-#     with open(f"uploads/{f.name}", "wb+") as destination:
-#         for chunk in f.chunks():
-#             destination.write(chunk)
+class WomenHome(TemplateView):
+    template_name = 'altrum/index.html'
+    extra_context = {
+        'title': 'Главная страница',
+        'menu': menu,
+        'posts': Altrum.published.all().select_related('cat'),
+        'cat_selected': 0,
+    }
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['title'] = 'Главная страница'
+    #     context['menu'] = menu
+    #     context['posts'] = Altrum.published.all().select_related('cat')
+    #     context['cat_selected'] = int(self.request.GET.get('cat_id', 0))
+    #     return context
 
 
 def about(request):
@@ -94,6 +108,29 @@ def add_page(request):
     }
     return render(request, 'altrum/addpage.html', data)
 
+
+class AddPage(View):
+    def get(self, request):
+        form = AddPostForm()
+        data = {
+            'menu': menu,
+            'title': 'Добавление статьи',
+            'form': form
+        }
+        return render(request, 'altrum/addpage.html', data)
+
+
+    def post(self, request):
+        form = AddPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        data = {
+            'menu': menu,
+            'title': 'Добавление статьи',
+            'form': form
+        }
+        return render(request, 'altrum/addpage.html', data)
 
 def contact(request):
     return HttpResponse("Обратная связь")
