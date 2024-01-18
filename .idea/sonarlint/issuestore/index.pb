@@ -48,3 +48,7 @@ U
 %sitealtrum/static/css/admin/admin.css,8/d/8d928e0bec7f25dc848bf01e262b904b03a8eec8
 D
 sitealtrum/manage.py,f/b/fb2932bc0a69a9073e94020d5c5f13591ffd1f59
+J
+sitealtrum/altrum/forms.py,e/a/eaec376921adf3c964d9caeb7803f84c8954fc9e
+Q
+!sitealtrum/sitealtrum/settings.py,7/8/78bbd231ad133aaf3b94278158114a5b5d363361

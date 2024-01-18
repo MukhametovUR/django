@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.template.loader import  render_to_string
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 from altrum.forms import AddPostForm, UploadedFileForm
 from altrum.models import Altrum, Category, TagPost, UploadFiles
@@ -21,26 +21,30 @@ cats_db = [
 
 ]
 
+#
+# def index(request):
+#     posts = Altrum.published.all().select_related('cat')
+#     data = {
+#         'title': 'Главная страница',
+#         'menu': menu,
+#         'posts': posts,
+#         'cat_selected': 0,
+#     }
+#     return render(request, 'altrum/index.html', context=data)
 
-def index(request):
-    posts = Altrum.published.all().select_related('cat')
-    data = {
-        'title': 'Главная страница',
-        'menu': menu,
-        'posts': posts,
-        'cat_selected': 0,
-    }
-    return render(request, 'altrum/index.html', context=data)
 
-
-class WomenHome(TemplateView):
+class AltrumHome(ListView):
+    # model = Altrum
     template_name = 'altrum/index.html'
+    context_object_name = 'posts'
     extra_context = {
         'title': 'Главная страница',
         'menu': menu,
-        'posts': Altrum.published.all().select_related('cat'),
         'cat_selected': 0,
     }
+
+    def get_queryset(self):
+        return Altrum.published.all().select_related('cat')
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -92,21 +96,21 @@ def show_post(request, post_slug):
     return render(request, 'altrum/post.html', data)
 
 
-def add_page(request):
-    if request.method == 'POST':
-        form = AddPostForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = AddPostForm()
-
-    data = {
-        'menu': menu,
-        'title': 'Добавление статьи',
-        'form': form
-    }
-    return render(request, 'altrum/addpage.html', data)
+# def add_page(request):
+#     if request.method == 'POST':
+#         form = AddPostForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('home')
+#     else:
+#         form = AddPostForm()
+#
+#     data = {
+#         'menu': menu,
+#         'title': 'Добавление статьи',
+#         'form': form
+#     }
+#     return render(request, 'altrum/addpage.html', data)
 
 
 class AddPage(View):
@@ -150,6 +154,23 @@ def show_categories(request, cat_slug):
         'cat_selected': category.pk,
     }
     return render(request, 'altrum/index.html', context=data)
+
+
+class AltrumCategory(ListView):
+    template_name = 'altrum/index.html'
+    context_object_name = 'posts'
+    allow_empty = False
+
+    def get_queryset(self):
+        return Altrum.published.filter(cat__slug=self.kwargs['cat_slug']).select_related('cat')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cat = context['posts'][0].cat
+        context['title'] = 'Категория - ' + cat.name
+        context['menu'] = menu
+        context['cat_selected'] = cat.pk
+        return context
 
 
 def page_not_found(request):
