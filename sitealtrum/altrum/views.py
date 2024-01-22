@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.template.loader import  render_to_string
 from django.views import View
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from altrum.forms import AddPostForm, UploadedFileForm
 from altrum.models import Altrum, Category, TagPost, UploadFiles
@@ -96,6 +96,22 @@ def show_post(request, post_slug):
     return render(request, 'altrum/post.html', data)
 
 
+class ShowPost(DetailView):
+    # model = Altrum
+    template_name = 'altrum/post.html'
+    slug_url_kwarg = 'post_slug'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['post'].title
+        context['menu'] = menu
+        return context
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Altrum.published, slug=self.kwargs[self.slug_url_kwarg])
+
+
 # def add_page(request):
 #     if request.method == 'POST':
 #         form = AddPostForm(request.POST, request.FILES)
@@ -122,7 +138,6 @@ class AddPage(View):
             'form': form
         }
         return render(request, 'altrum/addpage.html', data)
-
 
     def post(self, request):
         form = AddPostForm(request.POST, request.FILES)
@@ -177,14 +192,22 @@ def page_not_found(request):
     return HttpResponseNotFound("<h1>Страница не найдена</h1>")
 
 
-def show_tag_postlist(request, tag_slug):
-    tag = get_object_or_404(TagPost, slug=tag_slug)
-    posts = tag.tags.filter(is_published=Altrum.Status.PUBLISHED).select_related('cat')
-    data = {
-        'title': f"Тег: {tag.tag}",
-        'menu': menu,
-        'posts': posts,
-        'cat_selected': None,
-    }
+# def show_tag_postlist(request, tag_slug):
+#     tag = get_object_or_404(TagPost, slug=tag_slug)
+#     posts = tag.tags.filter(is_published=Altrum.Status.PUBLISHED).select_related('cat')
+#     data = {
+#         'title': f"Тег: {tag.tag}",
+#         'menu': menu,
+#         'posts': posts,
+#         'cat_selected': None,
+#     }
+#
+#     return render(request, 'altrum/index.html', context=data)
 
-    return render(request, 'altrum/index.html', context=data)
+class TagPostList(ListView):
+    template_name = 'altrum/index.html'
+    context_object_name = 'posts'
+    allow_empty = False
+
+    def get_queryset(self):
+        return Altrum.published.filter(tags_slug=self.kwargs['tag_slug']).seletc_render()
